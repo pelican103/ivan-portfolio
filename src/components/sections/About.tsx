@@ -4,12 +4,10 @@ import { Button, Section } from '../index';
 import { scrollToSection } from '../../utils/smoothScroll';
 
 export interface AboutProps {
-  imageUrl?: string;
   content?: string;
 }
 
-const About: React.FC<AboutProps> = ({ 
-  imageUrl,
+const About: React.FC<AboutProps> = ({
   content = `I'm a passionate computer science student at UCLA with a deep interest in the intersection of technology, education, and entrepreneurship. As the founder of LionCity Tutors, I've experienced firsthand how technology can transform education and make learning more accessible to students across Singapore.
 
 My journey in computer science is driven by a desire to build meaningful solutions that address real-world problems. Whether it's developing platforms that connect students with tutors, working on innovative software projects, or engaging with my community, I'm always looking for ways to leverage technology for positive impact.
@@ -78,22 +76,13 @@ When I'm not coding or studying, you can find me exploring new technologies, men
           <div className="relative">
 
             <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-2xl bg-linear-to-br from-[#2774AE] to-blue-400 flex items-center justify-center">
-              {imageUrl ? (
-                <img
-                  src={imageUrl}
-                  alt="Ivan Fang"
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-
-                <img
-                  src="/src/assets/images/IMG_1957.jpg"
-                  alt="Ivan Fang Profile"
-                  className="w-full h-full object-cover"
-                />
-              )}
+              <img
+                src={`${import.meta.env.BASE_URL}IMG_1957.jpg`}
+                alt="Ivan Fang Profile"
+                className="w-full h-full object-cover"
+              />
             </div>
-            
+
 
             <div className="absolute -top-4 -right-4 w-8 h-8 bg-[#2774AE] rounded-full opacity-80"></div>
             <div className="absolute -bottom-6 -left-6 w-12 h-12 bg-blue-300 rounded-full opacity-60"></div>
