@@ -1,0 +1,89 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Section, Timeline } from '../index';
+import type { TimelineEntry } from '../ui/Timeline';
+
+export interface ExperienceProps {
+  className?: string;
+}
+
+const Experience: React.FC<ExperienceProps> = ({ className = '' }) => {
+  const experienceEntries: TimelineEntry[] = [
+    {
+      id: 'founder-lioncity',
+      title: 'Founder',
+      organization: 'LionCity Tutors',
+      period: 'June 2025–Present',
+      description: `Built and launched a full-stack tuition-matching platform, processing over 100 matching requests within the first three months.
+      Developed backend APIs using Express.js and MongoDB to handle tutor registration and parent requests.
+      Engineered a Telegram bot to automate tutor profile updates, streamlining communication for 150+ active tutors.`,
+      type: 'experience',
+    },
+    {
+      id: 'software-engineering-intern',
+      title: 'Software Engineering Intern',
+      organization: 'Archimedes Holdings',
+      period: 'May 2025 - August 2025',
+      description: `Boosted online visibility for Cat Paradise Hotel by developing SEO-optimized landing pages with Next.js and Tailwind CSS. 
+      Integrated Playwright end-to-end tests into CI pipelines to ensure stability. 
+      Built a data sync service linking Shopify’s GraphQL API with Shopee’s REST API, automating inventory across 200+ SKUs.`,      
+type: 'experience',
+    },
+    {
+      id: 'community-leader',
+      title: 'Community Leader',
+      organization: 'Taman Jurong Youth Network',
+      period: 'January 2022– March 2023',
+      description: `Led community engagement initiatives and organized educational programs for local youth. 
+      Coordinated events, workshops, and mentorship programs that served over 200 community members. 
+      Developed leadership skills while fostering connections between young people and educational opportunities in the community.`,
+      type: 'experience',
+    },
+  ];
+
+
+  const titleVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
+  };
+
+  return (
+    <Section
+      id="experience"
+      background="white"
+      padding="xl"
+      className={className}
+    >
+      <div className="max-w-4xl mx-auto">
+
+        <motion.div
+          className="text-center mb-16"
+          variants={titleVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+            Experience
+          </h2>
+          <div className="w-20 h-1 bg-[#2774AE] mx-auto rounded-full mb-6"></div>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            My professional journey spans entrepreneurship, software development, and community leadership.
+          </p>
+        </motion.div>
+
+
+        <Timeline entries={experienceEntries} />
+      </div>
+    </Section>
+  );
+};
+
+export default Experience;
