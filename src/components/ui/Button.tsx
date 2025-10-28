@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export interface ButtonProps {
   variant?: 'primary' | 'secondary' | 'outline';
@@ -22,6 +22,13 @@ const Button: React.FC<ButtonProps> = ({
   disabled = false,
   type = 'button',
 }) => {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleClick = () => {
+    setIsClicked(true);
+    setTimeout(() => setIsClicked(false), 200);
+    if (onClick) onClick();
+  };
 
   const baseStyles = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
   
@@ -43,11 +50,42 @@ const Button: React.FC<ButtonProps> = ({
   
   const buttonContent = (
     <motion.span
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      className="flex items-center justify-center"
+      className="flex items-center justify-center relative"
     >
       {children}
+      
+      {/* Click sparkle effect */}
+      <AnimatePresence>
+        {isClicked && (
+          <motion.div
+            className="absolute inset-0 flex items-center justify-center pointer-events-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {[...Array(6)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-white rounded-full"
+                initial={{ 
+                  scale: 0,
+                  x: 0,
+                  y: 0,
+                }}
+                animate={{ 
+                  scale: [0, 1, 0],
+                  x: Math.cos(i * 60 * Math.PI / 180) * 20,
+                  y: Math.sin(i * 60 * Math.PI / 180) * 20,
+                }}
+                transition={{ 
+                  duration: 0.4,
+                  ease: 'easeOut'
+                }}
+              />
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.span>
   );
   
@@ -56,10 +94,13 @@ const Button: React.FC<ButtonProps> = ({
       <motion.a
         href={href}
         target = "_blank"
-        className={combinedClassName}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        onClick={onClick}
+        className={`${combinedClassName} relative overflow-hidden`}
+        whileHover={{ 
+          scale: 1.05,
+          boxShadow: '0 10px 25px rgba(39, 116, 174, 0.3)'
+        }}
+        whileTap={{ scale: 0.95 }}
+        onClick={handleClick}
       >
         {buttonContent}
       </motion.a>
@@ -69,11 +110,14 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <motion.button
       type={type}
-      className={combinedClassName}
-      onClick={onClick}
+      className={`${combinedClassName} relative overflow-hidden`}
+      onClick={handleClick}
       disabled={disabled}
-      whileHover={disabled ? {} : { scale: 1.02 }}
-      whileTap={disabled ? {} : { scale: 0.98 }}
+      whileHover={disabled ? {} : { 
+        scale: 1.05,
+        boxShadow: '0 10px 25px rgba(39, 116, 174, 0.3)'
+      }}
+      whileTap={disabled ? {} : { scale: 0.95 }}
     >
       {buttonContent}
     </motion.button>

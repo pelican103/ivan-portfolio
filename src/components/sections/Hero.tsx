@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Button, Section } from '../index';
+import { Button, Section, Boop, FloatingElements } from '../index';
 import { scrollToSection } from '../../utils/smoothScroll';
 
 export interface HeroProps {
@@ -55,6 +55,9 @@ const Hero: React.FC<HeroProps> = ({ onCTAClick }) => {
         }} />
       </div>
       
+      {/* Floating animated elements */}
+      <FloatingElements />
+      
 
       <motion.div
         className="relative z-10 text-center max-w-4xl mx-auto"
@@ -68,20 +71,22 @@ const Hero: React.FC<HeroProps> = ({ onCTAClick }) => {
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
         >
           Hi, I'm Ivan Fang{' '}
-          <motion.span
-            className="inline-block"
-            animate={{
-              rotate: [0, 14, -8, 14, -4, 10, 0],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatDelay: 3,
-              ease: 'easeInOut',
-            }}
-          >
-            👋
-          </motion.span>
+          <Boop rotation={15} scale={1.2} timing={200}>
+            <motion.span
+              className="inline-block"
+              animate={{
+                rotate: [0, 14, -8, 14, -4, 10, 0],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                repeatDelay: 3,
+                ease: 'easeInOut',
+              }}
+            >
+              👋
+            </motion.span>
+          </Boop>
         </motion.h1>
 
 
@@ -89,7 +94,13 @@ const Hero: React.FC<HeroProps> = ({ onCTAClick }) => {
           variants={itemVariants}
           className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-blue-100 mb-4 leading-relaxed"
         >
-          Computer Scientist at UCLA
+          Computer Scientist at UCLA{' '}
+          <Boop y={-8} scale={1.3} timing={300}>
+            💙
+          </Boop>
+          <Boop y={-8} scale={1.3} timing={300}>
+            💛
+          </Boop>
         </motion.h2>
 
 
@@ -116,32 +127,7 @@ const Hero: React.FC<HeroProps> = ({ onCTAClick }) => {
         </motion.div>
 
 
-        <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.6 }}
-        >
-          <motion.div
-            className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center"
-            animate={{ y: [0, 8, 0] }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-          >
-            <motion.div
-              className="w-1 h-3 bg-white/70 rounded-full mt-2"
-              animate={{ scaleY: [1, 0.5, 1] }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-            />
-          </motion.div>
-        </motion.div>
+
       </motion.div>
     </Section>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Button, Section } from '../index';
+import { Button, Section, ExplosiveImage, Boop } from '../index';
 import { scrollToSection } from '../../utils/smoothScroll';
 
 export interface AboutProps {
@@ -8,12 +8,63 @@ export interface AboutProps {
 }
 
 const About: React.FC<AboutProps> = ({
-  content = `I'm a passionate computer science student at UCLA with a deep interest in the intersection of technology, education, and entrepreneurship. As the founder of LionCity Tutors, I've experienced firsthand how technology can transform education and make learning more accessible to students across Singapore.
+  content = `Hailing from the sunny shores of Singapore, I'm currently a passionate computer science student at UCLA with a deep interest in the intersection of technology, education, and entrepreneurship. As the founder of LionCity Tutors, I've experienced firsthand how technology can transform education and make learning more accessible to students across Singapore.
 
 My journey in computer science is driven by a desire to build meaningful solutions that address real-world problems. Whether it's developing platforms that connect students with tutors, working on innovative software projects, or engaging with my community, I'm always looking for ways to leverage technology for positive impact.
 
-When I'm not coding or studying, you can find me exploring new technologies, mentoring fellow students, or working on entrepreneurial ventures that aim to make education more accessible and effective for everyone.`
+When I'm not coding or studying, you can either find me reading or doomscrolling social media on my bed.`
 }) => {
+
+  // Function to add boop effects to specific words
+  const addBoopToText = (text: string) => {
+    const boopWords = ['passionate', 'technology', 'innovative', 'coding', 'UCLA', 'Singapore'];
+    const parts = [];
+    let lastIndex = 0;
+
+    // Find all matches and their positions
+    const matches: Array<{ word: string; index: number; length: number }> = [];
+
+    boopWords.forEach(word => {
+      const regex = new RegExp(`\\b${word}\\b`, 'gi');
+      let match;
+      while ((match = regex.exec(text)) !== null) {
+        matches.push({
+          word: match[0],
+          index: match.index,
+          length: match[0].length
+        });
+      }
+    });
+
+    // Sort matches by index
+    matches.sort((a, b) => a.index - b.index);
+
+    // Build the result with boop components
+    matches.forEach((match, i) => {
+      // Add text before this match
+      if (match.index > lastIndex) {
+        parts.push(text.slice(lastIndex, match.index));
+      }
+
+      // Add the boop component
+      parts.push(
+        <Boop key={`boop-${i}`} scale={1.1} y={-2} rotation={2}>
+          <span className="text-[#2774AE] font-semibold cursor-pointer">
+            {match.word}
+          </span>
+        </Boop>
+      );
+
+      lastIndex = match.index + match.length;
+    });
+
+    // Add remaining text
+    if (lastIndex < text.length) {
+      parts.push(text.slice(lastIndex));
+    }
+
+    return parts.length > 0 ? parts : [text];
+  };
   const handleContactClick = () => {
     scrollToSection('contact');
   };
@@ -68,29 +119,67 @@ When I'm not coding or studying, you can find me exploring new technologies, men
         whileInView="visible"
         viewport={{ once: true, margin: '-100px' }}
       >
-        {/* Image Column */}
         <motion.div
           className="flex justify-center lg:justify-start order-1 lg:order-1"
           variants={imageVariants}
         >
           <div className="relative">
-
             <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-2xl bg-linear-to-br from-[#2774AE] to-blue-400 flex items-center justify-center">
-              <img
-                src={`${import.meta.env.BASE_URL}IMG_1957.jpg`}
+              <div className="absolute inset-0 rounded-full overflow-hidden shadow-2xl bg-linear-to-br from-[#2774AE] to-blue-400">
+
+              <ExplosiveImage
+                src={`${import.meta.env.BASE_URL}IMG_1957-modified.png`}
                 alt="Ivan Fang Profile"
-                className="w-full h-full object-cover"
+                className="w-full h-full"
+                explosionThreshold={5}
+                surpriseImage={`${import.meta.env.BASE_URL}IMG_5788-modified.png`}
+                imageScale={1}
+                objectFit="contain"
               />
+              </div>
             </div>
 
-
-            <div className="absolute -top-4 -right-4 w-8 h-8 bg-[#2774AE] rounded-full opacity-80"></div>
-            <div className="absolute -bottom-6 -left-6 w-12 h-12 bg-blue-300 rounded-full opacity-60"></div>
-            <div className="absolute top-1/2 -left-8 w-6 h-6 bg-blue-200 rounded-full opacity-40"></div>
+            <motion.div
+              className="absolute -top-4 -right-4 w-8 h-8 bg-[#2774AE] rounded-full opacity-80"
+              animate={{
+                y: [0, -10, 0],
+                rotate: [0, 180, 360]
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: 'easeInOut'
+              }}
+            />
+            <motion.div
+              className="absolute -bottom-6 -left-6 w-12 h-12 bg-blue-300 rounded-full opacity-60"
+              animate={{
+                x: [0, 10, 0],
+                scale: [1, 1.1, 1]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: 'easeInOut',
+                delay: 1
+              }}
+            />
+            <motion.div
+              className="absolute top-1/2 -left-8 w-6 h-6 bg-blue-200 rounded-full opacity-40"
+              animate={{
+                y: [0, -15, 0],
+                x: [0, 5, 0]
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: 'easeInOut',
+                delay: 2
+              }}
+            />
           </div>
         </motion.div>
 
-        {/* Content Column */}
         <motion.div
           className="order-2 lg:order-2 text-center lg:text-left"
           variants={itemVariants}
@@ -110,7 +199,7 @@ When I'm not coding or studying, you can find me exploring new technologies, men
                 key={index}
                 className="text-lg text-gray-700 leading-relaxed"
               >
-                {paragraph}
+                {addBoopToText(paragraph)}
               </p>
             ))}
           </motion.div>

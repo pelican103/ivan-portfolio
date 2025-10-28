@@ -87,7 +87,7 @@ const Resume: React.FC<ResumeProps> = ({ className = '' }) => {
                 {!error && (
                   <div className="border border-gray-200 rounded-lg overflow-hidden">
                     <Document
-                      file="/Ivan_Fang_Resume.pdf"
+                      file={`${import.meta.env.BASE_URL}Ivan_Fang_Resume.pdf`}
                       onLoadSuccess={onDocumentLoadSuccess}
                       onLoadError={onDocumentLoadError}
                       loading={null}
