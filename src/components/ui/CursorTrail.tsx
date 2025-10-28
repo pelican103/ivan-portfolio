@@ -9,13 +9,11 @@ interface TrailPoint {
 
 const CursorTrail: React.FC = () => {
   const [trail, setTrail] = useState<TrailPoint[]>([]);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     let trailId = 0;
 
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
       
       const newPoint: TrailPoint = {
         id: trailId++,

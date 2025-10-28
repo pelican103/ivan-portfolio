@@ -133,7 +133,6 @@ When I'm not coding or studying, you can either find me reading or doomscrolling
                 className="w-full h-full"
                 explosionThreshold={5}
                 surpriseImage={`${import.meta.env.BASE_URL}IMG_5788-modified.png`}
-                imageScale={1}
                 objectFit="contain"
               />
               </div>

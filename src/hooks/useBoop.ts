@@ -1,5 +1,5 @@
 import { useSpring } from 'framer-motion';
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 
 interface BoopConfig {
   x?: number;
