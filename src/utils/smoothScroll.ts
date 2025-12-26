@@ -5,7 +5,7 @@ export interface SmoothScrollOptions {
 }
 
 
-export const easingFunctions = {
+const easingFunctions = {
   linear: (t: number): number => t,
   easeInOut: (t: number): number => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t,
   easeOut: (t: number): number => t * (2 - t),
@@ -13,7 +13,7 @@ export const easingFunctions = {
 };
 
 
-export const smoothScrollTo = (
+const smoothScrollTo = (
   target: string | Element | number,
   options: SmoothScrollOptions = {}
 ): Promise<void> => {

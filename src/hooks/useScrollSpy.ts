@@ -43,7 +43,7 @@ export const useScrollSpy = (
   useEffect(() => {
     if (!sectionIds.length || typeof window === 'undefined') return;
 
-    let timeoutId: NodeJS.Timeout;
+    let timeoutId: number;
     
     const throttledHandleScroll = () => {
       clearTimeout(timeoutId);
