@@ -32,7 +32,7 @@ const Resume: React.FC<ResumeProps> = ({ className = '' }) => {
 
   const handleDownload = () => {
     const link = document.createElement('a');
-    link.href = '/Ivan_Fang_Resume.pdf';
+    link.href = `${import.meta.env.BASE_URL}Ivan_Fang_Resume.pdf`;
     link.download = 'Ivan_Fang_Resume.pdf';
     link.target = '_blank';
     document.body.appendChild(link);
@@ -41,7 +41,7 @@ const Resume: React.FC<ResumeProps> = ({ className = '' }) => {
   };
 
   const handleOpenInDrive = () => {
-    window.open('https://drive.google.com/file/d/1ntbX-isOUvMVJxJzfpZwV91OUovSLh1w/view?usp=sharing', '_blank');
+    window.open('https://drive.google.com/file/d/1uci1svxpK4GslCSECMqTeleCfcmvTo_c/view?usp=sharing', '_blank');
   };
 
   return (

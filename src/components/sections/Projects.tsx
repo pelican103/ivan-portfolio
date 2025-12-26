@@ -12,12 +12,31 @@ const Projects: React.FC<ProjectsProps> = ({ className = '' }) => {
     {
       id: 'lioncity-tutors',
       title: 'LionCity Tutors',
-      description: 'A platform connecting students and tutors across Singapore, built with React, MongoDB, and Telegram Bot API. Designed to reduce the hassle of finding quality tutors.',
-      technologies: ['React', 'MongoDB', 'Telegram Bot API', 'Javascript'],
+      description: `A tutoring platform connecting students and educators across Singapore:
+      • Built full-stack web application serving 300+ active users
+      • Integrated Telegram Bot API for seamless communication and notifications
+      • Reduced average tutor search time from weeks to hours`,
+      technologies: ['React', 'MongoDB', 'Telegram Bot API'],
+      image: `${import.meta.env.BASE_URL}LionCity.webp`,
       links: {
-        demo: 'https://www.lioncitytutors.com/'
+        demo: 'https://www.lioncitytutors.com/',
+        github: 'https://github.com/pelican103/lioncity-tutors'
       },
     },
+    {
+      id: 'unity',
+      title: 'ANU (Unity Game)',
+      description: `A top-down 2D adventure game developed for my Unity game development class:
+      • Worked with 3 other developers through complete game development lifecycle
+      • Published on itch.io 
+      • Gained hands-on experience in C# programming and Unity Engine`,
+      technologies: ['C#', 'Unity Engine'],
+      image: `${import.meta.env.BASE_URL}ANU.webp`,
+      links: {
+        demo: 'https://toastercosplay.itch.io/an-u',
+        github: 'https://github.com/pelican103/ENGR1-GD-Group-Project'
+      },
+    }
   ];
 
 
@@ -53,23 +72,23 @@ const Projects: React.FC<ProjectsProps> = ({ className = '' }) => {
     >
 
       <motion.div
-        className="text-center mb-12"
+        className="text-center mb-16"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        <h2 className="text-display-3 text-gray-900 mb-6">
           Featured Projects
         </h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <p className="text-body-large text-gray-600 max-w-2xl mx-auto">
           Explore some of the projects I've built to solve real-world problems and make a positive impact.
         </p>
       </motion.div>
 
 
       <motion.div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -84,19 +103,6 @@ const Projects: React.FC<ProjectsProps> = ({ className = '' }) => {
             <ProjectCard project={project} />
           </motion.div>
         ))}
-      </motion.div>
-
-
-      <motion.div
-        className="text-center mt-12"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.3 }}
-      >
-        <p className="text-gray-500 italic">
-          More exciting projects coming soon...
-        </p>
       </motion.div>
     </Section>
   );

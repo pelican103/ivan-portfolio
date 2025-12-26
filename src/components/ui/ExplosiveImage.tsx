@@ -149,7 +149,7 @@ const ExplosiveImage: React.FC<ExplosiveImageProps> = ({
             particles.map((p) => (
               <motion.div
                 key={p.id}
-                className="absolute w-4 h-4 bg-linear-to-r from-yellow-400 to-red-500 rounded-full"
+                className="absolute w-4 h-4 from-yellow-400 to-red-500 rounded-full"
                 style={{ top: '50%', left: '50%' }}
                 initial={{ x: 0, y: 0, scale: 0, opacity: 1 }}
                 animate={{ x: p.x, y: p.y, scale: [0, 1, 0], opacity: [1, 1, 0] }}

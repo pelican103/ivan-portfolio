@@ -70,11 +70,11 @@ type: 'experience',
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-display-3 text-gray-900 mb-6">
             Experience
           </h2>
-          <div className="w-20 h-1 bg-[#2774AE] mx-auto rounded-full mb-6"></div>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <div className="w-20 h-1 bg-[#2774AE] mx-auto rounded-full mb-8"></div>
+          <p className="text-body-large text-gray-600 max-w-2xl mx-auto">
             My professional journey spans entrepreneurship, software development, and community leadership.
           </p>
         </motion.div>

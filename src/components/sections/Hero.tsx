@@ -68,7 +68,7 @@ const Hero: React.FC<HeroProps> = ({ onCTAClick }) => {
 
         <motion.h1
           variants={itemVariants}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
+          className="text-display-1 text-white mb-8 leading-none"
         >
           Hi, I'm Ivan Fang{' '}
           <Boop rotation={15} scale={1.2} timing={200}>
@@ -89,10 +89,9 @@ const Hero: React.FC<HeroProps> = ({ onCTAClick }) => {
           </Boop>
         </motion.h1>
 
-
         <motion.h2
           variants={itemVariants}
-          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-blue-100 mb-4 leading-relaxed"
+          className="text-heading-1 font-medium text-blue-100 mb-6 leading-snug"
         >
           Computer Scientist at UCLA{' '}
           <Boop y={-8} scale={1.3} timing={300}>
@@ -103,10 +102,9 @@ const Hero: React.FC<HeroProps> = ({ onCTAClick }) => {
           </Boop>
         </motion.h2>
 
-
         <motion.p
           variants={itemVariants}
-          className="text-lg sm:text-xl md:text-2xl text-blue-50 mb-12 leading-relaxed max-w-3xl mx-auto"
+          className="text-body-large text-blue-50 mb-12 leading-relaxed max-w-3xl mx-auto"
         >
           I love anything software!
         </motion.p>

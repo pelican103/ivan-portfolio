@@ -1,4 +1,4 @@
-import { Navbar, Hero, About, Projects, Experience, Education, Resume, Footer, CursorTrail } from './components';
+import { Navbar, Hero, About, Projects, Experience, Education, Resume, Footer } from './components';
 import { useScrollSpy } from './hooks';
 import { scrollToTop } from './utils/smoothScroll';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -53,8 +53,6 @@ function App() {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
       >
-        {/* Cursor trail effect */}
-        <CursorTrail />
         <Navbar />
         
         <main className="relative">

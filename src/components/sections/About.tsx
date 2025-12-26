@@ -12,12 +12,11 @@ const About: React.FC<AboutProps> = ({
 
 My journey in computer science is driven by a desire to build meaningful solutions that address real-world problems. Whether it's developing platforms that connect students with tutors, working on innovative software projects, or engaging with my community, I'm always looking for ways to leverage technology for positive impact.
 
-When I'm not coding or studying, you can either find me reading or doomscrolling social media on my bed.`
+When I'm not coding or studying, you can either find me reading or doomscrolling on my bed.`
 }) => {
 
-  // Function to add boop effects to specific words
   const addBoopToText = (text: string) => {
-    const boopWords = ['passionate', 'technology', 'innovative', 'coding', 'UCLA', 'Singapore'];
+    const boopWords = ['passionate', 'technology', 'innovative', 'coding', 'UCLA'];
     const parts = [];
     let lastIndex = 0;
 
@@ -184,19 +183,18 @@ When I'm not coding or studying, you can either find me reading or doomscrolling
           variants={itemVariants}
         >
 
-          <motion.div variants={itemVariants} className="mb-8">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+          <motion.div variants={itemVariants} className="mb-10">
+            <h2 className="text-display-3 text-gray-900 mb-6">
               About Me
             </h2>
             <div className="w-20 h-1 bg-[#2774AE] mx-auto lg:mx-0 rounded-full"></div>
           </motion.div>
 
-
-          <motion.div variants={itemVariants} className="space-y-6">
+          <motion.div variants={itemVariants} className="space-y-8">
             {content.split('\n\n').map((paragraph, index) => (
               <p
                 key={index}
-                className="text-lg text-gray-700 leading-relaxed"
+                className="text-body text-gray-700 leading-relaxed"
               >
                 {addBoopToText(paragraph)}
               </p>

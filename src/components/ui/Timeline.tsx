@@ -67,32 +67,33 @@
 
               <div className="sm:ml-8">
 
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-                  <div className="mb-2 sm:mb-0">
-                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-1">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
+                  <div className="mb-3 sm:mb-0">
+                    <h3 className="text-heading-3 text-gray-900 mb-2">
                       {entry.title}
                     </h3>
-                    <p className="text-lg text-[#2774AE] font-semibold">
+                    <p className="text-body font-semibold text-[#2774AE]">
                       {entry.organization}
                     </p>
                   </div>
                   <div className="shrink-0">
-                    <span className="inline-block px-3 py-1 bg-[#2774AE] bg-opacity-10 text-[#ffffff] text-sm font-medium rounded-full">
+                    <span className="inline-block px-4 py-2 bg-[#2774AE]/10 text-[#2774AE] text-caption font-medium rounded-full border border-[#2774AE]/20">
                       {entry.period}
                     </span>
                   </div>
                 </div>
                 
-
-                 <div className="text-gray-700 leading-relaxed">
-                  <ul className="list-disc pl-6 space-y-2 marker:text-[#2774AE]">
+                <div className="text-gray-700">
+                  <div className="prose-list">
                     {entry.description
                       .split('\n')
                       .filter(line => line.trim() !== '')
                       .map((line, i) => (
-                        <li key={i}>{line.trim()}</li>
+                        <li key={i} className="text-body-small leading-relaxed">
+                          {line.trim()}
+                        </li>
                       ))}
-                  </ul>
+                  </div>
                 </div>
               </div>
             </Card>
